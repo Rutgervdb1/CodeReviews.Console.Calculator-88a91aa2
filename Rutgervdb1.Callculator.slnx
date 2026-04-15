@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="CalculatorLibrary/CalculatorLibrary.csproj" />
+  <Project Path="Rutgervdb1.Callculator/Rutgervdb1.Callculator.csproj" />
+</Solution>
