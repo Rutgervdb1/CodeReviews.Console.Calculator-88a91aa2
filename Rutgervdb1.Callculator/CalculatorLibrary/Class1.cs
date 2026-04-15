@@ -5,14 +5,13 @@ using System.Text.Json.Nodes;
 
 namespace CalculatorLibrary
 {
-   public class Calculation
+    public class Calculation
     {
         public double num1 { get; set; }
         public double num2 { get; set; }
         public double result { get; set; }
         public string? SelectedOperator { get; set; }
     }
-
     public class Calculator
     {
         public double doOperation(double firstNr, double secondNr, string selectedOperator, int calcUses = 0)
@@ -52,17 +51,19 @@ namespace CalculatorLibrary
             return result;
         }
 
-        public double ReadInput(string prompt)  {
+        public double ReadInput(string prompt)
+        {
             while (true)
             {
                 Console.WriteLine(prompt);
                 string? input = Console.ReadLine();
 
-                if(double.TryParse(input, out double result))
+                if (double.TryParse(input, out double result))
                 {
                     return result;
                 }
-                else {
+                else
+                {
                     Console.WriteLine("This is not a valid number.");
                 }
             }
@@ -85,21 +86,20 @@ namespace CalculatorLibrary
             File.WriteAllText(jsonFile, json);
         }
 
-        public void checkChosenIndex(int chosenIndex, List<Calculation> history)
+        public static int CheckChosenIndex(int chosenIndex, List<Calculation> history)
         {
-            chosenIndex = int.Parse(Console.ReadLine());
-
-            if (chosenIndex > history.Count || chosenIndex < 1) {
-                Console.WriteLine($"There is no data at the chosen number. Please choose a number between 1 and {history.Count()}.");
-                chosenIndex = int.Parse(Console.ReadLine());
-            }
-            else
+            while (chosenIndex > history.Count || chosenIndex <= 0)
             {
-                 chosenIndex;
+                Console.WriteLine($"There is no data at the chosen number. Please choose a number between 1 and {history.Count}.");
+
+                if (!int.TryParse(Console.ReadLine(), out chosenIndex))
+                {
+                    Console.WriteLine("Invalid input. Please enter a number.");
+
+                }
             }
-            
 
-
+            return chosenIndex;
         }
 
     }
