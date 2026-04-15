@@ -99,6 +99,5 @@ namespace CalculatorLibrary
 
             return chosenIndex;
         }
-
     }
 }
